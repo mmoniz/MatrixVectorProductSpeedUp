@@ -1,0 +1,11 @@
+#!/bin/bash
+N=7800
+for((i=1;i<=4;i=i*2))
+do
+	for((p=1; p<=32; p=p*2))
+	do
+		n=$((N/i))
+		#echo mpirun -np $p ./A2perf $n
+		sqsub -r 5m -o log_q1-$p-$n.txt -q mpi -n $p ./A2perf $n
+	done
+done
